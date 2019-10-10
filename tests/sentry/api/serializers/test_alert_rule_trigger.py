@@ -12,7 +12,7 @@ from sentry.testutils import TestCase
 
 
 class BaseAlertRuleTriggerSerializerTest(object):
-    def assert_alert_rule_serialized(self, trigger, result):
+    def assert_alert_rule_trigger_serialized(self, trigger, result):
         assert result["id"] == six.text_type(trigger.id)
         assert result["alertRuleId"] == six.text_type(trigger.alert_rule_id)
         assert result["label"] == trigger.label
@@ -22,7 +22,7 @@ class BaseAlertRuleTriggerSerializerTest(object):
         assert result["dateAdded"] == trigger.date_added
 
 
-class AlertRuleSerializerTest(BaseAlertRuleTriggerSerializerTest, TestCase):
+class AlertRuleTriggerSerializerTest(BaseAlertRuleTriggerSerializerTest, TestCase):
     def test_simple(self):
         alert_rule = self.create_alert_rule()
         trigger = create_alert_rule_trigger(
@@ -32,7 +32,7 @@ class AlertRuleSerializerTest(BaseAlertRuleTriggerSerializerTest, TestCase):
         self.assert_alert_rule_serialized(trigger, result)
 
 
-class DetailedAlertRuleSerializerTest(BaseAlertRuleTriggerSerializerTest, TestCase):
+class DetailedAlertRuleTriggerSerializerTest(BaseAlertRuleTriggerSerializerTest, TestCase):
     def test_simple(self):
         alert_rule = self.create_alert_rule()
         trigger = create_alert_rule_trigger(
