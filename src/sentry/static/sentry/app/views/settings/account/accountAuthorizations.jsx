@@ -1,4 +1,5 @@
 import {Box, Flex} from 'grid-emotion';
+import {Link} from 'react-router';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'react-emotion';
@@ -78,7 +79,7 @@ class AccountAuthorizations extends AsyncView {
         this.api.request('/api-authorizations/', {
           method: 'DELETE',
           data: {authorization: authorization.id},
-          success: data => {
+          success: () => {
             IndicatorStore.remove(loadingIndicator);
           },
           error: () => {
@@ -102,7 +103,7 @@ class AccountAuthorizations extends AsyncView {
         <SettingsPageHeader title="Authorized Applications" />
         <Description>
           {tct('You can manage your own applications via the [link:API dashboard].', {
-            link: <a href="/settings/account/api/" />,
+            link: <Link to="/settings/account/api/" />,
           })}
         </Description>
 
