@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'react-emotion';
 
 import InlineSvg from 'app/components/inlineSvg';
 
@@ -12,6 +13,7 @@ import {
   GridHeadCellButtonHoverButton,
   GridHeadCellButtonHoverDraggable,
   GridHeadCellResizer,
+  Z_INDEX_ADD_COLUMN,
 } from './styles';
 
 export type GridHeadCellProps<Column> = {
@@ -94,6 +96,17 @@ class GridHeadCell<Column> extends React.Component<
     );
   }
 
+  renderThing = () => {
+    const {isEditing} = this.props;
+
+    return (
+      <React.Fragment>
+        <GridHeadCellResizer isEditing={isEditing} />
+        <AddColumnButton />
+      </React.Fragment>
+    );
+  };
+
   render() {
     const {isEditing, children} = this.props;
     const {isHovering} = this.state;
@@ -110,10 +123,25 @@ class GridHeadCell<Column> extends React.Component<
 
         {/* Keep the Resizer at the bottom to ensure that it is will always
             float on top of everything else */
-        FLAG_GRID_RESIZABLE && <GridHeadCellResizer isEditing={isEditing} />}
+        FLAG_GRID_RESIZABLE && this.renderThing()}
       </GridHeadCellWrapper>
     );
   }
 }
+
+const AddColumnButton = styled('div')`
+  height: 24px;
+  width: 24px;
+
+  border-radius: 3px;
+
+  position: absolute;
+  top: ${45 - 12}px;
+  right: -12px;
+
+  background-color: blue;
+
+  z-index: ${Z_INDEX_ADD_COLUMN};
+`;
 
 export default GridHeadCell;

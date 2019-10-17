@@ -6,5 +6,5 @@
  * 2. Allow resizing of column width
  * 3. Allow drag-to-rearrage columns
  */
-export const FLAG_GRID_RESIZABLE = false;
-export const FLAG_GRID_DRAGGABLE = false;
+export const FLAG_GRID_RESIZABLE = true;
+export const FLAG_GRID_DRAGGABLE = true;

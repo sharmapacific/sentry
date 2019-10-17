@@ -15,6 +15,7 @@ const GRID_EDIT_WIDTH_DOUBLE = '70px'; // (2 * GRID_EDIT_WIDTH)
  */
 const Z_INDEX_RESIZER = '1';
 const Z_INDEX_EDITABLE = '10';
+export const Z_INDEX_ADD_COLUMN = '20';
 
 type GridEditableProps = {
   numColumn?: number;
@@ -131,6 +132,8 @@ export const GridHeadCellButton = styled('div')<GridEditableProps>`
   }
 `;
 export const GridHeadCellResizer = styled('span')<GridEditableProps>`
+  outline: 1px solid red;
+
   position: absolute;
   top: 0;
   right: -2px; /* Overlap half of Resizer into the right neighbor */
